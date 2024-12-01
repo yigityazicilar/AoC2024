@@ -20,9 +20,9 @@ fn part1(path: &str) -> i64 {
         .iter()
         .for_each(|line| {
             let nums = line
-                                    .split_whitespace()
-                                    .map(|num| num.parse::<i64>().unwrap())
-                                    .collect::<Vec<i64>>();
+                        .split_whitespace()
+                        .map(|num| num.parse::<i64>().unwrap())
+                        .collect::<Vec<i64>>();
             left_list.push(nums[0]);
             right_list.push(nums[1]);
         });
@@ -46,12 +46,12 @@ fn part2(path: &str) -> i64 {
         .iter()
         .for_each(|line| {
             let nums = line
-                                    .split_whitespace()
-                                    .map(|num| num.parse::<i64>().unwrap())
-                                    .collect::<Vec<i64>>();
+                        .split_whitespace()
+                        .map(|num| num.parse::<i64>().unwrap())
+                        .collect::<Vec<i64>>();
             left_list.push(nums[0]);
-            if let Some(count) = count_map.get(&nums[1]) {
-                count_map.insert(nums[1], count + 1);
+            if let Some(count) = count_map.get_mut(&nums[1]) {
+                *count += 1;
             } else {
                 count_map.insert(nums[1], 1);
             }
