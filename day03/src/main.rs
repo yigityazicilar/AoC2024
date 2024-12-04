@@ -1,7 +1,6 @@
 use advent_of_code_utils::read_file;
 use regex::Regex;
 
-
 fn main() {
     let part1_solution = part1("input.txt");
     println!("Day 3 Part 1 Solution: {part1_solution}");
