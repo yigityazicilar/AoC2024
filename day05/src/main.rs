@@ -92,6 +92,7 @@ fn part2(path: &str) -> i64 {
                     candidates = candidates.difference(after_pages).map(|x| *x).collect();
                 }
             }
+            assert!(candidates.len() == 1);
             let next_page = candidates.into_iter().next().unwrap();
             remaining_pages.remove(&next_page);
             correct_book.push(next_page);
