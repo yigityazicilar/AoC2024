@@ -14,12 +14,12 @@ fn part1(path: &str) -> i64 {
     content[0].lines().for_each(|line| {
         let rule = line.split("|").map(|x| x.parse::<i64>().unwrap()).collect::<Vec<i64>>();
         if rules_map.contains_key(&rule[0]) {
-            let after_set = rules_map.get_mut(&rule[0]).unwrap();
-            after_set.insert(rule[1]);
+            let before_set = rules_map.get_mut(&rule[0]).unwrap();
+            before_set.insert(rule[1]);
         } else {
-            let mut after_set = HashSet::new();
-            after_set.insert(rule[1]);
-            rules_map.insert(rule[0], after_set);
+            let mut before_set = HashSet::new();
+            before_set.insert(rule[1]);
+            rules_map.insert(rule[0], before_set);
         }
     });
 
@@ -31,9 +31,9 @@ fn part1(path: &str) -> i64 {
     let mid_values = books.iter().map(|pages| {
         let mut seen_pages: HashSet<i64> = HashSet::new();
         for page in pages {
-            let after_pages_option = rules_map.get(page);
-            if let Some(after_pages) = after_pages_option {
-                if seen_pages.difference(after_pages).count() != seen_pages.len() {
+            let before_pages_option = rules_map.get(page);
+            if let Some(before_pages) = before_pages_option {
+                if seen_pages.difference(before_pages).count() != seen_pages.len() {
                     return 0;
                 }
             }
@@ -52,12 +52,12 @@ fn part2(path: &str) -> i64 {
     content[0].lines().for_each(|line| {
         let rule = line.split("|").map(|x| x.parse::<i64>().unwrap()).collect::<Vec<i64>>();
         if rules_map.contains_key(&rule[0]) {
-            let after_set = rules_map.get_mut(&rule[0]).unwrap();
-            after_set.insert(rule[1]);
+            let before_set = rules_map.get_mut(&rule[0]).unwrap();
+            before_set.insert(rule[1]);
         } else {
-            let mut after_set = HashSet::new();
-            after_set.insert(rule[1]);
-            rules_map.insert(rule[0], after_set);
+            let mut before_set = HashSet::new();
+            before_set.insert(rule[1]);
+            rules_map.insert(rule[0], before_set);
         }
     });
 
@@ -69,9 +69,9 @@ fn part2(path: &str) -> i64 {
     let wrong_books: Vec<Vec<i64>> = books.into_iter().filter(|pages| {
         let mut seen_pages: HashSet<i64> = HashSet::new();
         for page in pages {
-            let after_pages_option = rules_map.get(page);
-            if let Some(after_pages) = after_pages_option {
-                if seen_pages.difference(after_pages).count() != seen_pages.len() {
+            let before_pages_option = rules_map.get(page);
+            if let Some(before_pages) = before_pages_option {
+                if seen_pages.difference(before_pages).count() != seen_pages.len() {
                     return true;
                 }
             }
@@ -87,9 +87,9 @@ fn part2(path: &str) -> i64 {
         for _ in 0..pages_len {
             let mut candidates: HashSet<i64> = HashSet::from_iter(remaining_pages.clone());
             for page in &remaining_pages {
-                let after_pages_option = rules_map.get(page);
-                if let Some(after_pages) = after_pages_option {
-                    candidates = candidates.difference(after_pages).map(|x| *x).collect();
+                let before_pages_option = rules_map.get(page);
+                if let Some(before_pages) = before_pages_option {
+                    candidates = candidates.difference(before_pages).map(|x| *x).collect();
                 }
             }
             assert!(candidates.len() == 1);
